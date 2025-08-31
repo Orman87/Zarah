@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For A Special Friend</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: #5a3e36;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(to right, #8ec5fc 0%, #e0c3fc 100%);
+            margin: -20px -20px 30px -20px;
+            border-radius: 20px 20px 0 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle fill="rgba(255,255,255,0.2)" cx="10" cy="10" r="2"/></pattern></defs><rect fill="url(%23dots)" width="100" height="100"/></svg>');
+            opacity: 0.3;
+        }
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: #5a3e36;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.8rem;
+            color: #5a3e36;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .intro {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 1.2rem;
+            color: #7c5c4d;
+            padding: 0 20px;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+            padding: 0 15px;
+            position: relative;
+            background: transparent;
+        }
+        
+        /* Sparkles Effect */
+        .sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #8ec5fc;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px #8ec5fc;
+            animation: sparkle 3s infinite;
+            z-index: 1;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            position: relative;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(142, 197, 252, 0.3);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15), 0 0 15px rgba(142, 197, 252, 0.3);
+        }
+        
+        .card-img {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+        
+        .card:hover .card-img img {
+            transform: scale(1.1);
+        }
+        
+        .download-btn {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background: rgba(142, 197, 252, 0.9);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(10px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+        
+        .card:hover .download-btn {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .download-btn:hover {
+            background: #5a9cea;
+            transform: scale(1.1) rotate(360deg);
+            box-shadow: 0 0 15px #5a9cea;
+        }
+        
+        .card-content {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .card-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #5a3e36;
+            line-height: 1.4;
+            font-style: italic;
+        }
+        
+        .card-author {
+            text-align: right;
+            color: #9d8a7e;
+            font-size: 0.9rem;
+        }
+        
+        .friendship-message {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(to right, #f8f9fa 0%, #e9ecef 100%);
+            margin: 0 -20px -20px -20px;
+            border-radius: 0 0 20px 20px;
+            position: relative;
+        }
+        
+        .friendship-message::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle fill="rgba(142,197,252,0.1)" cx="5" cy="5" r="1"/><circle fill="rgba(142,197,252,0.1)" cx="15" cy="15" r="1"/></pattern></defs><rect fill="url(%23grain)" width="100" height="100"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .friendship-message h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #5a3e36;
+            margin-bottom: 25px;
+        }
+        
+        .message {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #7c5c4d;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .smile {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 2rem;
+            color: #8ec5fc;
+            letter-spacing: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            color: #9d8a7e;
+            font-size: 0.9rem;
+        }
+        
+        /* Music Player Styles */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50px;
+            padding: 10px 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .play-btn, .vol-btn, .prev-btn, .next-btn {
+            background: #8ec5fc;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .play-btn:hover, .vol-btn:hover, .prev-btn:hover, .next-btn:hover {
+            background: #5a9cea;
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(142, 197, 252, 0.5);
+        }
+        
+        .play-btn:active, .vol-btn:active, .prev-btn:active, .next-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .volume-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+        
+        .volume-slider {
+            width: 80px;
+            accent-color: #8ec5fc;
+        }
+        
+        .song-info {
+            font-size: 14px;
+            color: #7c5c4d;
+            margin-left: 10px;
+            max-width: 200px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        /* Floating elements animation */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .element {
+            position: absolute;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle fill="%238ec5fc" cx="12" cy="12" r="4"/></svg>');
+            background-size: cover;
+            width: 15px;
+            height: 15px;
+            opacity: 0.5;
+            animation: float linear infinite;
+        }
+        
+        @keyframes float {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Button animations */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(142, 197, 252, 0.5);
+            }
+            70% {
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(142, 197, 252, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(142, 197, 252, 0);
+            }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.5rem;
+            }
+            
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+            
+            .card-quote {
+                font-size: 1.3rem;
+            }
+            
+            .friendship-message h2 {
+                font-size: 2rem;
+            }
+            
+            .message {
+                font-size: 1.1rem;
+            }
+            
+            .music-player {
+                bottom: 10px;
+                right: 10px;
+                left: 10px;
+                border-radius: 10px;
+                justify-content: center;
+            }
+            
+            .volume-container {
+                display: none;
+                position: absolute;
+                bottom: 60px;
+                right: 10px;
+                background: rgba(255, 255, 255, 0.9);
+                padding: 10px;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            .volume-container.show {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements" id="elements-container"></div>
+    
+    <div class="container">
+        <header>
+            <h1>For A Special Friend</h1>
+            <p class="subtitle">Appreciating the beautiful moments of friendship</p>
+        </header>
+        
+        <p class="intro">"A true friend is one of life's greatest treasures."</p>
+        
+        <div class="gallery" id="imageGallery">
+            <!-- Cards will be generated by JavaScript -->
+        </div>
+        
+        <div class="friendship-message">
+            <h2>A Note of Friendship</h2>
+            <div class="message">
+                <p>Dear Friend,</p>
+                <p>I wanted to create something to celebrate our friendship and all the good times we've shared. You've been an amazing friend through thick and thin, and I truly appreciate having you in my life.</p>
+                <p>These photos represent some of the moments that make our friendship special. Thank you for always being there, for your laughter, and for your support.</p>
+                <p>Here's to many more adventures together!</p>
+                <p>Warmly,</p>
+            </div>
+            <div class="smile">☺ ☺ ☺</div>
+        </div>
+        
+        <footer>
+            <p>Made with appreciation for a wonderful friend</p>
+        </footer>
+    </div>
+
+    <!-- Music Player -->
+    <div class="music-player">
+        <div class="player-controls">
+            <button class="prev-btn" id="prevBtn"><i class="fas fa-step-backward"></i></button>
+            <button class="play-btn pulse" id="playBtn"><i class="fas fa-play"></i></button>
+            <button class="next-btn" id="nextBtn"><i class="fas fa-step-forward"></i></button>
+            <button class="vol-btn" id="volBtn"><i class="fas fa-volume-up"></i></button>
+        </div>
+        <div class="volume-container" id="volContainer">
+            <input type="range" class="volume-slider" id="volSlider" min="0" max="1" step="0.1" value="0.5">
+        </div>
+        <div class="song-info" id="songInfo">Not playing</div>
+    </div>
+
+    <script>
+        // Friendly quotes data with the new image URLs
+        const friendlyData = [
+            {
+                imageUrl: "https://files.catbox.moe/jbyryf.jpg",
+                quote: "A real friend is one who walks in when the rest of the world walks out.",
+                author: "Walter Winchell"
+            },
+            {
+                imageUrl: "https://files.catbox.moe/eae3cf.jpg",
+                quote: "Friendship is born at that moment when one person says to another, 'What! You too? I thought I was the only one.'",
+                author: "C.S. Lewis"
+            },
+            {
+                imageUrl: "https://files.catbox.moe/u91qy3.jpg",
+                quote: "There is nothing better than a friend, unless it is a friend with chocolate.",
+                author: "Linda Grayson"
+            },
+            {
+                imageUrl: "https://files.catbox.moe/8loz46.jpg",
+                quote: "A good friend knows all your stories. A best friend helped you write them.",
+                author: "Unknown"
+            },
+            {
+                imageUrl: "https://files.catbox.moe/xstiwp.jpg",
+                quote: "Friends are the family we choose for ourselves.",
+                author: "Edna Buchanan"
+            },
+            {
+                imageUrl: "https://files.catbox.moe/ty2fms.jpg",
+                quote: "The language of friendship is not words but meanings.",
+                author: "Henry David Thoreau"
+            }
+        ];
+
+        // Music playlist
+        const musicPlaylist = [
+            {
+                title: "Friendly Melody 1",
+                src: "https://files.catbox.moe/5fy4lm.m4a"
+            },
+            {
+                title: "Friendly Melody 2",
+                src: "https://files.catbox.moe/no0w7x.m4a"
+            },
+            {
+                title: "Friendly Melody 3",
+                src: "https://files.catbox.moe/cmwp7c.mp3"
+            },
+            {
+                title: "Friendly Melody 4",
+                src: "https://files.catbox.moe/5ombvn.m4a"
+            },
+            {
+                title: "Friendly Melody 5",
+                src: "https://files.catbox.moe/503fxd.mp3"
+            },
+            {
+                title: "Friendly Melody 6",
+                src: "https://files.catbox.moe/mp3pd9.m4a"
+            }
+        ];
+
+        // Function to generate the gallery cards
+        function generateGallery() {
+            const gallery = document.getElementById('imageGallery');
+            
+            friendlyData.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                
+                card.innerHTML = `
+                    <div class="card-img">
+                        <img src="${item.imageUrl}" alt="Friendship image">
+                        <button class="download-btn" data-url="${item.imageUrl}" data-index="${index}">
+                            <i class="fas fa-download"></i>
+                        </button>
+                    </div>
+                    <div class="card-content">
+                        <p class="card-quote">"${item.quote}"</p>
+                        <p class="card-author">- ${item.author}</p>
+                    </div>
+                `;
+                
+                gallery.appendChild(card);
+            });
+            
+            // Add sparkles to the gallery
+            addSparkles();
+            
+            // Add download functionality
+            setupDownloadButtons();
+        }
+
+        // Function to add sparkles to the gallery
+        function addSparkles() {
+            const gallery = document.getElementById('imageGallery');
+            const sparkleCount = 15;
+            
+            for (let i = 0; i < sparkleCount; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 5 + 's';
+                sparkle.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                gallery.appendChild(sparkle);
+            }
+        }
+
+        // Function to setup download buttons
+        function setupDownloadButtons() {
+            const downloadButtons = document.querySelectorAll('.download-btn');
+            
+            downloadButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const imageUrl = this.getAttribute('data-url');
+                    const imageIndex = this.getAttribute('data-index');
+                    
+                    // Create a temporary anchor element to trigger download
+                    const a = document.createElement('a');
+                    a.href = imageUrl;
+                    a.download = `friendship_image_${parseInt(imageIndex) + 1}.jpg`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    
+                    // Add animation to the button
+                    this.innerHTML = '<i class="fas fa-check"></i>';
+                    this.style.background = '#4CAF50';
+                    
+                    setTimeout(() => {
+                        this.innerHTML = '<i class="fas fa-download"></i>';
+                        this.style.background = 'rgba(142, 197, 252, 0.9)';
+                    }, 1500);
+                });
+            });
+        }
+
+        // Function to create floating elements
+        function createFloatingElements() {
+            const elementsContainer = document.getElementById('elements-container');
+            const elementCount = 20;
+            
+            for (let i = 0; i < elementCount; i++) {
+                const element = document.createElement('div');
+                element.className = 'element';
+                element.style.left = Math.random() * 100 + 'vw';
+                element.style.animationDuration = (Math.random() * 10 + 5) + 's';
+                element.style.animationDelay = Math.random() * 5 + 's';
+                element.style.opacity = Math.random() * 0.3 + 0.2;
+                element.style.width = (Math.random() * 10 + 8) + 'px';
+                element.style.height = element.style.width;
+                elementsContainer.appendChild(element);
+            }
+        }
+
+        // Music player functionality
+        function setupMusicPlayer() {
+            const audio = new Audio();
+            let currentSongIndex = 0;
+            let isPlaying = false;
+            
+            const playBtn = document.getElementById('playBtn');
+            const volBtn = document.getElementById('volBtn');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const volContainer = document.getElementById('volContainer');
+            const volSlider = document.getElementById('volSlider');
+            const songInfo = document.getElementById('songInfo');
+            
+            // Load first song
+            audio.src = musicPlaylist[currentSongIndex].src;
+            audio.volume = volSlider.value;
+            songInfo.textContent = musicPlaylist[currentSongIndex].title;
+            
+            // Play/Pause functionality
+            playBtn.addEventListener('click', () => {
+                if (isPlaying) {
+                    audio.pause();
+                    playBtn.innerHTML = '<i class="fas fa-play"></i>';
+                    playBtn.classList.remove('pulse');
+                } else {
+                    audio.play();
+                    playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                    playBtn.classList.add('pulse');
+                }
+                isPlaying = !isPlaying;
+            });
+            
+            // Previous song functionality
+            prevBtn.addEventListener('click', () => {
+                currentSongIndex = (currentSongIndex - 1 + musicPlaylist.length) % musicPlaylist.length;
+                audio.src = musicPlaylist[currentSongIndex].src;
+                songInfo.textContent = musicPlaylist[currentSongIndex].title;
+                
+                if (isPlaying) {
+                    audio.play();
+                }
+                
+                // Add animation
+                prevBtn.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    prevBtn.style.transform = 'scale(1)';
+                }, 100);
+            });
+            
+            // Next song functionality
+            nextBtn.addEventListener('click', () => {
+                currentSongIndex = (currentSongIndex + 1) % musicPlaylist.length;
+                audio.src = musicPlaylist[currentSongIndex].src;
+                songInfo.textContent = musicPlaylist[currentSongIndex].title;
+                
+                if (isPlaying) {
+                    audio.play();
+                }
+                
+                // Add animation
+                nextBtn.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    nextBtn.style.transform = 'scale(1)';
+                }, 100);
+            });
+            
+            // Volume control
+            volBtn.addEventListener('click', () => {
+                volContainer.classList.toggle('show');
+                
+                // Add animation
+                volBtn.style.transform = 'rotate(15deg)';
+                setTimeout(() => {
+                    volBtn.style.transform = 'rotate(0)';
+                }, 200);
+            });
+            
+            volSlider.addEventListener('input', () => {
+                audio.volume = volSlider.value;
+                
+                // Change volume icon based on level
+                if (volSlider.value == 0) {
+                    volBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                } else if (volSlider.value < 0.5) {
+                    volBtn.innerHTML = '<i class="fas fa-volume-down"></i>';
+                } else {
+                    volBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                }
+            });
+            
+            // When song ends, play next one
+            audio.addEventListener('ended', () => {
+                currentSongIndex = (currentSongIndex + 1) % musicPlaylist.length;
+                audio.src = musicPlaylist[currentSongIndex].src;
+                songInfo.textContent = musicPlaylist[currentSongIndex].title;
+                audio.play();
+            });
+            
+            // Error handling
+            audio.addEventListener('error', () => {
+                songInfo.textContent = "Error loading audio";
+            });
+        }
+
+        // Initialize everything when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            generateGallery();
+            createFloatingElements();
+            setupMusicPlayer();
+        });
+    </script>
+</body>
+</html>
